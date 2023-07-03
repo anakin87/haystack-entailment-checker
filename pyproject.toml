@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "haystack-entailment-checker"
+description = 'Haystack node for checking the entailment between a statement and a list of Documents'
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "Apache-2.0"
+keywords = []
+authors = [
+  { name = "anakin87", email = "stefanofiorucci@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "farm-haystack[inference]>=1.18.1"
+  ]
+
+[project.urls]
+Documentation = "https://github.com/anakin87/haystack-entailment-checker#readme"
+Issues = "https://github.com/anakin87/haystack-entailment-checker/issues"
+Source = "https://github.com/anakin87/haystack-entailment-checker"
+
+[tool.black]
+line-length = 120
