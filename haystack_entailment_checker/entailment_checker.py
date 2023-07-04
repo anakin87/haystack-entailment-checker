@@ -55,10 +55,10 @@ class EntailmentChecker(BaseComponent):
         if "entailment" not in self.labels:
             raise ValueError("The model config must contain entailment value in the id2label dict.")
 
-    def run(self, statement_to_check: str, documents: List[Document]):
+    def run(self, query: str, documents: List[Document]):
         scores, agg_con, agg_neu, agg_ent = 0, 0, 0, 0
         premise_batch = [doc.content for doc in documents]
-        hypothesis_batch = [statement_to_check] * len(documents)
+        hypothesis_batch = [query] * len(documents)
         entailment_info_batch = self.get_entailment_batch(
             premise_batch=premise_batch, hypothesis_batch=hypothesis_batch
         )
@@ -98,9 +98,9 @@ class EntailmentChecker(BaseComponent):
 
         return entailment_checker_result, "output_1"
 
-    def run_batch(self, statements_to_check: List[str], documents: List[Document]):
+    def run_batch(self, queries: List[str], documents: List[Document]):
         entailment_checker_result_batch = []
-        entailment_info_batch = self.get_entailment_batch(premise_batch=documents, hypothesis_batch=statements_to_check)
+        entailment_info_batch = self.get_entailment_batch(premise_batch=documents, hypothesis_batch=queries)
         for doc, entailment_info in zip(documents, entailment_info_batch):
             doc.meta["entailment_info"] = entailment_info
             aggregate_entailment_info = {
